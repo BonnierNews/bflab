@@ -21,8 +21,9 @@ Instead we will implement a complete interpreter for the turing-complete esoteri
 
 ## brainfuck!?
 
-The brainfuck language is small, consisting of only 8 instructions but yet powerful enough to implement somewhat useful programs in. Included in this repository
-is a [language specification](SPECIFICATION.md). Read it carefully when implementing an instruction.
+The brainfuck language is small, consisting of only 8 instructions but yet powerful enough to implement somewhat useful programs in. Since each instruction is only
+one character long it makes it really easy to parse the language. Included in this repository
+is a [language specification](SPECIFICATION.md). Skim through it to get an overview and then read it carefully when implementing the actual instructions.
 
 ## Let's get started!
 
@@ -44,9 +45,18 @@ node app.js examples/hello.b
 
 ## Implementation hints
 
-- Use the test cases as guidance, there are test cases that only uses a subset of the instructions, make those work first!
-- Start with the simple instructions: No loops and no user input!
-- Then do loops!
-- And finally do user input!
-- `run` should be async as we can deal with user input!
-- Remember the brainfuck specification!
+Implement instructions by the simplest first moving on to harder targets using the test cases as guidance.
+
+1. Start by making the tests in [arithmetic-feature.js](test/feature/arithmetic-feature.js) work first by implementing the instructions `.`, `+` and `-`
+2. Then make the tests in [move-feature.js](test/feature/move-feature.js) work by implementing the move instructions `>` and `<`.
+3. Then make the tests in [hello-world.js](test/feature/hello-world.js) work by implementing loops `[` and `]`
+4. Then make the tests in [echo.js](test/feature/echo.js) work by implementing user input `,`
+5. Finally ensure it all works togheter by making the tests in [rot13](test/feature/rot13.js) work.
+
+## Implementation done? Have fun with brainfuck!
+
+If you are done with your brainfuck interpreter there are a number of things you can try implementing on your own in brainfuck.
+
+1. Modify `examples/echo.b` to exit on something else than newline
+2. Print `brainfuck rocks!` using as few instructions as possible
+3. Make a program that exits when the user inputs `quit\n`

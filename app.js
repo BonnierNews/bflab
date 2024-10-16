@@ -9,8 +9,7 @@ import { readFileSync } from "fs";
  * @param {import("stream").Writable} output
  * @returns {Promise<void>}
  */
-export function run(program, input, output) {
-  throw new Error("Not implemented");
+export async function run(program, input, output) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

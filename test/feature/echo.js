@@ -9,10 +9,10 @@ Feature("Echo", () => {
       stdin = fakeStdin();
     });
 
-    When("we are running the simple echo program and input '!'", () => {
+    When("we are running the simple echo program and input '!'", async () => {
       const program = ",.";
       stdin.write("!");
-      run(program, stdin, stdout);
+      await run(program, stdin, stdout);
     });
 
     Then("The output should be '!'", () => {
@@ -28,12 +28,20 @@ Feature("Echo", () => {
       stdin = fakeStdin();
     });
 
-    When("we are running the echo program and input 'foo'", () => {
+    When("we are running the echo program and input 'foo'", async () => {
       const program = `
-Echos whatever is typed until Alt 255 NBSP is reached
-,+[-.,+]`;
-      stdin.write("foo");
-      run(program, stdin, stdout);
+Echos whatever is typed until newline is entered
+,
+----------
+[
+  ++++++++++
+  .
+  ,
+  ----------
+]
+`;
+      stdin.write("foo\n");
+      await run(program, stdin, stdout);
     });
 
     Then("The output should be 'foo'", () => {

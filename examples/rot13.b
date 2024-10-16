@@ -1,17 +1,3 @@
-import { fakeStdin, fakeStdout } from "../helpers/fake-process.js";
-import { run } from "../../app.js";
-
-// https://en.wikipedia.org/wiki/ROT13
-Feature("Rot 13", () => {
-  Scenario("Rot 13 on a long user input", () => {
-    let stdout, stdin;
-    Given("we have a fake stdout and stdin", () => {
-      stdout = fakeStdout();
-      stdin = fakeStdin();
-    });
-
-    When("Running the Rot 13 program with a long user input", async () => {
-      const program = `
 ,                Read one character
 ----- -----      Remove 10 to check if it was the newline character
 [                Skip loop if it was the newline
@@ -44,13 +30,3 @@ Feature("Rot 13", () => {
     <,                     Read next character
     ----- -----            Remove 10 to check if it was the newline character
 ]                            End character reading loop
-      `;
-      stdin.write("Gur Dhvpx Oebja Sbk Whzcf Bire Gur Ynml Qbt\n");
-      await run(program, stdin, stdout);
-    });
-
-    Then("The output should be the exected", () => {
-      expect(stdout.getData()).to.eql("The Quick Brown Fox Jumps Over The Lazy Dog");
-    });
-  });
-});
