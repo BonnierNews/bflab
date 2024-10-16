@@ -32,6 +32,7 @@ To install the necessary deps and run the failing test suites:
 
 ```bash
 nvm use
+npm install
 npm test
 ```
 
