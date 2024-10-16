@@ -1,0 +1,27 @@
+{
+  "name": "bflab",
+  "version": "0.0.1",
+  "description": "Brainfuck lab",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha",
+    "posttest": "npm run lint && npm run typecheck",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "author": "Bonnier News AB",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@bonniernews/eslint-config": "^1.2.0",
+    "@bonniernews/tsconfig": "^0.0.2",
+    "@types/node": "^22.7.5",
+    "chai": "^5.1.0",
+    "eslint": "^8.35.0",
+    "mocha": "^10.4.0",
+    "mocha-cakes-2": "^3.3.0",
+    "typescript": "^5.6.3"
+  }
+}

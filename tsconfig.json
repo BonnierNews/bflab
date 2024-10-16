@@ -1,0 +1,17 @@
+{
+  "extends": "@bonniernews/tsconfig",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowJs": true,
+    "sourceMap": true,
+    "rootDir": "./",
+    "noEmit": true,
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "lib": [
+    "ES2022"
+  ]
+}
