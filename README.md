@@ -32,6 +32,15 @@ is a [language specification](SPECIFICATION.md). Skim through it to get an overv
 
 Included in this repo is an incomplete brainfuck interpreter along with a test suite. You will implement the interpreter by filling out the missing code in the `run` function in [app.js](app.js).
 
+Clone this repo and create a branch:
+
+```bash
+git clone git@github.com:BonnierNews/bflab.git
+cd bflab
+git checkout -b my-epic-interpreter
+git push origin my-epic-interpreter
+```
+
 To install the necessary deps and run the failing test suites:
 
 ```bash
