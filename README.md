@@ -17,7 +17,10 @@ Examples of languages that are usually interpreted are Python, JavaScript (more 
 ## Where do we start when implementing an interpreter?
 
 To start implementing an interpreter we need a language to implement an interpreter for. Picking a mainstream programming language would be much too complicated for a 120 minutes session.
+
 Instead we will implement a complete interpreter for the turing-complete esoteric language [brainfuck](https://esolangs.org/wiki/Brainfuck).
+
+A basic interpreter implementation is basically a loop that goes through the program code and immediately executing the instruction.
 
 ## brainfuck!?
 
