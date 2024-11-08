@@ -6,10 +6,63 @@ import { readFileSync } from "fs";
 /**
  * @param {string} program
  * @param {import("stream").Readable} input
- * @param {import("stream").Writable} output
+ * @param {impo:zrt("stream").Writable} output
  * @returns {Promise<void>}
  */
 export async function run(program, input, output) {
+  const memory = Array(30000).fill(0);
+  let ptr = 0;
+
+  for (let command of program) {
+    switch (command) {
+      case ">":
+        ptr++;
+        break;
+      case "<":
+        ptr--;
+        break;
+      case "+":
+        memory[ptr]++;
+        break;
+      case "-":
+        memory[ptr]--;
+        break;
+      case ".":
+        output.write(String.fromCharCode(memory[ptr]));
+        break;
+      case ",":
+        const buf = Buffer.alloc(1);
+        await input.read(buf);
+        memory[ptr] = buf[0];
+        break;
+      case "[":
+        if (memory[ptr] === 0) {
+          let depth = 1;
+          while (depth !== 0) {
+            command = program[++i];
+            if (command === "[") {
+              depth++;
+            } else if (command === "]") {
+              depth--;
+            }
+          }
+        }
+        break;
+      case "]":
+        if (memory[ptr] !== 0) {
+          let depth = 1;
+          while (depth !== 0) {
+            command = program[--i];
+            if (command === "]") {
+              depth++;
+            } else if (command === "[") {
+              depth--;
+            }
+          }
+        }
+        break;
+    }
+  }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
