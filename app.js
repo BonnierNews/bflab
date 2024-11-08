@@ -13,7 +13,8 @@ export async function run(program, input, output) {
   const memory = Array(30000).fill(0);
   let ptr = 0;
 
-  for (let command of program) {
+  for (let i = 0; i < program.length; i++) {
+    let command = program[i];
     switch (command) {
       case ">":
         ptr++;
@@ -22,18 +23,23 @@ export async function run(program, input, output) {
         ptr--;
         break;
       case "+":
-        memory[ptr]++;
+        memory[ptr] = (memory[ptr] + 1) % 256;
         break;
       case "-":
-        memory[ptr]--;
+        memory[ptr] = (memory[ptr] - 1 + 256) % 256;
         break;
       case ".":
         output.write(String.fromCharCode(memory[ptr]));
         break;
       case ",":
-        const buf = Buffer.alloc(1);
-        await input.read(buf);
-        memory[ptr] = buf[0];
+        {
+          const data = await input.read(1);
+          if (data) {
+            memory[ptr] = data[0];
+          } else {
+            memory[ptr] = 0;
+          }
+        }
         break;
       case "[":
         if (memory[ptr] === 0) {
