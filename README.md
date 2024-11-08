@@ -46,7 +46,7 @@ To install the necessary deps and run the failing test suites:
 ```bash
 nvm use
 npm install
-npm test
+npm test -- -b # bail on failure to make it easy to spot errors!
 ```
 
 To run the interpreter on an actual file do:
@@ -59,11 +59,11 @@ node app.js examples/hello.b
 
 Implement instructions by the simplest first moving on to harder targets using the test cases as guidance.
 
-1. Start by making the tests in [arithmetic-feature.js](test/feature/arithmetic-feature.js) work first by implementing the instructions `.`, `+` and `-`
-2. Then make the tests in [move-feature.js](test/feature/move-feature.js) work by implementing the move instructions `>` and `<`.
-3. Then make the tests in [hello-world.js](test/feature/hello-world.js) work by implementing loops `[` and `]`
-4. Then make the tests in [echo.js](test/feature/echo.js) work by implementing user input `,`
-5. Finally ensure it all works togheter by making the tests in [rot13](test/feature/rot13.js) work.
+1. Start by making the tests in [0-arithmetic-feature.js](test/feature/0-arithmetic-feature.js) work first by implementing the instructions `.`, `+` and `-`
+2. Then make the tests in [1-move-feature.js](test/feature/1-move-feature.js) work by implementing the move instructions `>` and `<`.
+3. Then make the tests in [2-hello-world-feature.js](test/feature/2-hello-world-feature.js) work by implementing loops `[` and `]`
+4. Then make the tests in [3-echo-feature.js](test/feature/3-echo-feature.js) work by implementing user input `,`
+5. Finally ensure it all works togheter by making the tests in [4-rot13-feature](test/feature/4-rot13-feature.js) work.
 
 ## Implementation done? Have fun with brainfuck!
 
