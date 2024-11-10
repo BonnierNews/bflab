@@ -20,6 +20,8 @@ export async function run(program, input, output) {
   const inputStr = Buffer.concat(data).toString();
   let inputIndex = 0;
 
+  const loopStack = [];
+
   for (let instructionIndex = 0; instructionIndex < program.length; instructionIndex++) {
     switch (program[instructionIndex]) {
       case ".":
@@ -43,20 +45,21 @@ export async function run(program, input, output) {
         break;
       case "[":
         if (memory[pointer] === 0) {
-          let i = instructionIndex;
-          while (program[instructionIndex] !== "]") {
-            i++;
+          let openBrackets = 1;
+          while (openBrackets > 0) {
+            instructionIndex++;
+            if (program[instructionIndex] === "[") openBrackets++;
+            if (program[instructionIndex] === "]") openBrackets--;
           }
-          instructionIndex = i--; // subtract 1 because the loop will increment it
+        } else {
+          loopStack.push(instructionIndex);
         }
         break;
       case "]":
         if (memory[pointer] !== 0) {
-          let j = instructionIndex;
-          while (program[j] !== "[") {
-            j--;
-          }
-          instructionIndex = j--; // subtract 1 because the loop will increment it
+          instructionIndex = loopStack[loopStack.length - 1];
+        } else {
+          loopStack.pop();
         }
         break;
     }
